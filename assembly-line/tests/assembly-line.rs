@@ -11,6 +11,34 @@ fn process_rate_per_minute(speed: u8, expected_rate: u32) {
     );
 }
 
+fn process_success_rate(speed: u8, expected_rate: f64){
+    let actual_rate = assembly_line::success_rate(speed);
+    let actual_rate = (actual_rate * 100.0).round() / 100.0;
+    assert!((actual_rate - expected_rate).abs() < f64::EPSILON);
+}
+
+#[test]
+fn success_rate_at_speed_zero(){
+    process_success_rate(0,0.0);
+}
+
+#[test]
+fn success_rate_at_speed_four(){
+    process_success_rate(4,1.0);
+}
+
+
+#[test]
+fn success_rate_at_speed_8(){
+    process_success_rate(8,0.9);
+}
+
+
+#[test]
+fn success_rate_at_speed_10(){
+    process_success_rate(10,0.77);
+}
+
 #[test]
 fn production_rate_per_hour_at_speed_zero() {
     process_rate_per_hour(0, 0.0);
