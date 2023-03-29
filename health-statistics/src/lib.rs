@@ -10,12 +10,7 @@ pub struct User {
 
 impl User {
     pub fn new(name: String, age: u32, weight: f32) -> Self {
-        let user = User {
-            name: String::from(name),
-            age: age,
-            weight: weight,            
-        };
-        return user
+        User {name, age, weight}
     }
 
     pub fn name(&self) -> &str {
